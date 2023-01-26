@@ -1,0 +1,48 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:14.1-alpine
+    # restart: always
+    environment:
+      - POSTGRES_USER=service
+      - POSTGRES_PASSWORD=service
+      - POSTGRES_DB=service
+      # remove the next two for dockerize
+      - POSTGRES_PORT=service
+      - POSTGRES_HOST=localhost
+      - PGDATA=/var/postgres_data
+    ports:
+      - "5432:5432"
+    volumes: 
+      - db:/var/postgres/data
+  redis:
+    image: redis:6.2-alpine
+    restart: always
+    environment:
+      - REDIS_HOST=localhost
+      - REDIS_PORT=6379
+    ports:
+      - '6379:6379'
+  # backend:
+  #   restart: always
+  #   depends_on:
+  #     - redis
+  #     - db
+  #   build: ./backend/
+  #   ports:
+  #     - "5000:5000"
+  #   volumes:
+  #     - ./backend:/backend
+  # frontend:
+  #   restart: always
+  #   depends_on:
+  #     - backend
+  #   build: ./frontend
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - ./frontend:/frontend
+volumes:
+  db:
+
+# docker-compose up -d --build

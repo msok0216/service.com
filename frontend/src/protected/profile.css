@@ -1,0 +1,18 @@
+.profile-content {
+    margin-left: 200px;
+}
+
+.table-content {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1000px;
+}
+
+.table-footer{
+    float: right;
+    margin-right: 20px;
+}
+
+.page-button {
+    margin-left: 10px;
+}
